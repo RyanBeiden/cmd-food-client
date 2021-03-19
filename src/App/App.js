@@ -21,6 +21,7 @@ import LocationProvider from '../helpers/data/LocationProvider';
 import ProductProvider from '../helpers/data/ProductProvider';
 import ProfileProvider from '../helpers/data/ProfileProvider';
 import KrogerProvider from '../helpers/data/KrogerProvider';
+import ProductListProvider from '../helpers/data/ProductListProvider';
 import Footer from '../components/shared/Footer/Footer';
 
 import './App.scss';
@@ -42,13 +43,15 @@ function App() {
                         <Route exact path="/profile/:userId(\d+)" render={(props) => <Profile {...props} />} />
                         <Route exact path="/profile/:userId(\d+)/edit" render={(props) => <EditProfile {...props} />} />
                       </ProfileProvider>
-                      <KrogerProvider>
-                        <Route exact path="/location/:locationId(\d+)" render={(props) => <Location {...props} />} />
-                        <Route exact path="/product/add" render={(props) => <AddProduct {...props} />} />
-                      </KrogerProvider>
-                      <Route exact path="/basket/:userId(\d+)" render={(props) => <Basket {...props} />} />
-                      <Route exact path="/start" render={(props) => <StartShopping {...props} />} />
-                      <Route exact path="/aisles/:aisleNum(\d+)" render={(props) => <Aisles {...props} />} />
+                      <ProductListProvider>
+                        <KrogerProvider>
+                          <Route exact path="/location/:locationId(\d+)" render={(props) => <Location {...props} />} />
+                          <Route exact path="/product/add" render={(props) => <AddProduct {...props} />} />
+                        </KrogerProvider>
+                        <Route exact path="/basket/:userId(\d+)" render={(props) => <Basket {...props} />} />
+                        <Route exact path="/start" render={(props) => <StartShopping {...props} />} />
+                        <Route exact path="/aisles/:aisleNum(\d+)" render={(props) => <Aisles {...props} />} />
+                      </ProductListProvider>
                     </LocationProvider>
                   </ProductProvider>
                 </React.Fragment>
