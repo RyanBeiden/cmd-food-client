@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 
 header {
-  .headerText {
+  .header-text {
     position: absolute;
     top: 0;
     font-family: $primaryFont;
@@ -19,13 +19,33 @@ header {
     padding: .3rem 0rem 0rem 1rem;
   }
 
-  .profile-image {
+  .dropdown-container {
     position: absolute;
     top: 0;
     right: 0;
+  }
+
+  .dropdown-toggle {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 100%;
+    padding: 0 !important;
+    margin: .7rem 1rem 0rem 0rem;
+  }
+
+  .dropdown-toggle:focus {
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+  .dropdown-toggle::after {
+    display: none !important;
+  }
+
+  .thumbnail-image {
     width: 3rem;
     border-radius: 100%;
     border: 1px solid $secondaryColor;
-    margin: .6rem 1rem 0rem 0rem;
+    margin: 0;
   }
 }
