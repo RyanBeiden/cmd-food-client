@@ -17,3 +17,46 @@
     margin-top: 2rem;
   }
 }
+
+.register {
+  Form {
+    margin: 2rem 4rem 4rem 4rem;
+  }
+
+  Label {
+    margin: 0;
+    color: $primaryColor;
+    font-family: $primaryFont;
+    font-size: .9rem;
+  }
+
+  Input {
+    font-family: $secondaryFont;
+    color: $primaryColor !important;
+    font-size: .9rem !important;
+  }
+
+  button {
+    @include button;
+  }
+
+  .formSubmit {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .password-alert {
+    padding-bottom: 0;
+  }
+
+  p {
+    margin-bottom: .8rem;
+    font-size: .8rem;
+  }
+
+  .close {
+    border: none;
+    margin-top: -.2rem !important;
+  }
+}
