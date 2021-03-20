@@ -1,0 +1,35 @@
+@import '../../../styles/variables';
+
+footer {
+  position: absolute;
+  bottom: 0;
+  min-width: 100%;
+
+  .footer-background {
+    transform: scaleY(-1);
+  }
+
+  .footer-text {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    text-align: right;
+    font-family: $primaryFont;
+    color: $secondaryColor;
+    margin: 0rem 1.2rem 1rem 0rem;
+  }
+
+  .github {
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: $secondaryColor;
+    text-decoration: underline;
+  }
+
+  a:hover, a:focus, a:visited, a:active {
+    color: $secondaryColor;
+  }
+}

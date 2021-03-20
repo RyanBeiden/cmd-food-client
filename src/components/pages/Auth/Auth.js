@@ -1,12 +1,12 @@
 import React from 'react';
-import Login from './Login';
-import Register from './Register';
+import { Link } from 'react-router-dom';
+import './Auth.scss';
 
 function Auth(props) {
   return (
-    <div>
-      <Login />
-      <Register />
+    <div className='auth'>
+      <Link to='/register' className='register-button'>Register</Link>
+      <Link to='/login' className='login-button'>Login</Link>
     </div>
   );
 }

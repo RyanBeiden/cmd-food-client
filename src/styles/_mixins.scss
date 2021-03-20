@@ -1,0 +1,14 @@
+@import 'variables';
+
+@mixin button {
+  text-align: center;
+  background-color: transparent;
+  border-radius: 0;
+  border-style: none;
+  border: .123rem solid $primaryColor;
+  border-color: $primaryColor;
+  color: $primaryColor;
+  font-family: $primaryFont;
+  padding: .3rem 2rem;
+  text-decoration: none;
+}
