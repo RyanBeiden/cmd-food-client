@@ -46,7 +46,7 @@ function Register(props) {
   };
 
   return (
-    <div className='register'>
+    <div className='register-login'>
       <Form>
         <Form.Group controlId="firstName">
           <Form.Label>First Name *</Form.Label>

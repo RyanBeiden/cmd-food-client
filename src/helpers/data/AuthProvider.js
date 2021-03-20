@@ -7,7 +7,19 @@ function AuthProvider(props) {
     fetch('https://cmd-food.herokuapp.com/register', {
       method: 'POST',
       headers: {
-        Authorization: `Token ${localStorage.getItem('cf_token')}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(shopperObj),
+    })
+      .then((response) => resolve(response.json()))
+      .catch((err) => reject(err));
+  });
+
+  const loginShopper = (shopperObj) => new Promise((resolve, reject) => {
+    fetch('https://cmd-food.herokuapp.com/login', {
+      method: 'POST',
+      headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
@@ -18,7 +30,7 @@ function AuthProvider(props) {
   });
 
   return (
-    <AuthContext.Provider value={{ createShopper }}>
+    <AuthContext.Provider value={{ createShopper, loginShopper }}>
       { props.children }
     </AuthContext.Provider>
   );
