@@ -7,7 +7,7 @@ function Footer(props) {
   return (
     <footer>
       <div className="footer-text">
-        <GitHubIcon className='github'/>
+        <a href='https://github.com/RyanBeiden/cmd-food-client' target='_blank' rel="noreferrer"><GitHubIcon className='github'/></a>
         <h5>Created by <a href='https://ryanbeiden.com' target='_blank' rel="noreferrer">Ryan Beiden</a></h5>
       </div>
       <svg
