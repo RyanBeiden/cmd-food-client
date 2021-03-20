@@ -1,0 +1,19 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.auth {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 50%;
+  grid-template-rows: 1fr 1fr;
+
+  .register-button {
+    @include button;
+    margin-top: 2rem;
+  }
+
+  .login-button {
+    @include button;
+    margin-top: 2rem;
+  }
+}

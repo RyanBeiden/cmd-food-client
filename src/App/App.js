@@ -9,6 +9,8 @@ import {
 import Header from '../components/shared/Header/Header';
 import AuthProvider from '../helpers/data/AuthProvider';
 import Auth from '../components/pages/Auth/Auth';
+import Register from '../components/pages/Auth/Register';
+import Login from '../components/pages/Auth/Login';
 import Home from '../components/pages/Home/Home';
 import EditProfile from '../components/pages/EditProfile/EditProfile';
 import Profile from '../components/pages/Profile/Profile';
@@ -29,8 +31,8 @@ import './App.scss';
 function App() {
   return (
     <div className="App">
-      <Header />
       <BrowserRouter>
+        <Header />
         <Switch>
           <Route render={() => {
             if (localStorage.getItem('cf_token')) {
@@ -62,6 +64,8 @@ function App() {
                 <AuthProvider>
                   <Redirect to="/authentication" />
                   <Route exact path="/authentication" render={(props) => <Auth {...props} />} />
+                  <Route exact path="/register" render={(props) => <Register {...props} />} />
+                  <Route exact path="/login" render={(props) => <Login {...props} />} />
                 </AuthProvider>
               </React.Fragment>
             );

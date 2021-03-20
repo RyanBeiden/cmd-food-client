@@ -25,6 +25,10 @@ header {
     right: 0;
   }
 
+  .dropdown-menu {
+    padding: 0;
+  }
+
   .dropdown-toggle {
     background-color: transparent !important;
     border: none !important;
@@ -47,5 +51,15 @@ header {
     border-radius: 100%;
     border: 1px solid $secondaryColor;
     margin: 0;
+  }
+
+  .nav-link {
+    display: block;
+    font-family: $primaryFont;
+    color: $primaryColor;
+  }
+
+  .nav-link:nth-child(odd) {
+    background-color: #F5F5F5;
   }
 }

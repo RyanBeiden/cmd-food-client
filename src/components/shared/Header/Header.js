@@ -1,6 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
 
 import './Header.scss';
 
@@ -26,9 +26,9 @@ function Header(props) {
             alt="Profile"
           />
         }>
-          <Dropdown.Item href="/">Profile</Dropdown.Item>
-          <Dropdown.Item href="/">Basket</Dropdown.Item>
-          <Dropdown.Item href="/">Start Shopping</Dropdown.Item>
+          <Link to='/profile' className='nav-link'>Profile</Link>
+          <Link to='/Basket' className='nav-link'>Basket</Link>
+          <Link to='/start' className='nav-link'>Start Shopping</Link>
         </DropdownButton>
       </div>
     </header>
