@@ -30,7 +30,7 @@ function Login(props) {
       .then((response) => {
         if ('token' in response) {
           localStorage.setItem('cf_token', response.token);
-          props.history.push('/');
+          window.location = 'http://localhost:3000/';
         } else {
           setShow(true);
         }
