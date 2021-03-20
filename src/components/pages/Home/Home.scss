@@ -1,0 +1,38 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.home {
+  margin-top: 1.2rem;
+  display: grid;
+  justify-content: center;
+
+  .button-container {
+    justify-self: center;
+  }
+
+  button {
+    @include button;
+    margin: 1.4rem 0;
+    padding: .6rem 1.4rem .5rem 1.4rem;
+    font-weight: bold;
+  }
+
+  .nav-basket, .nav-profile {
+    margin-right: .5rem;
+    margin-top: -.3rem;
+  }
+
+  .nav-basket {
+    font-size: 1.6rem;
+  }
+
+  .nav-start {
+    font-size: 2rem;
+    margin-top: -.1rem;
+    margin-right: .5rem;
+  }
+
+  .nav-profile {
+    font-size: 1.8rem;
+  }
+}
