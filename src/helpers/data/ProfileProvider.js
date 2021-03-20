@@ -6,7 +6,7 @@ function ProfileProvider(props) {
   const [profile, setProfile] = useState([]);
 
   const getProfile = async () => {
-    const response = await fetch('https://cmd-food.herokuapp.com/profile', {
+    const response = await fetch('https://cmd-food.herokuapp.com/profiles', {
       method: 'GET',
       headers: {
         Authorization: `Token ${localStorage.getItem('cf_token')}`,
