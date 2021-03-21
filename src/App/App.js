@@ -47,7 +47,8 @@ function App() {
                       </ProfileProvider>
                       <ProductListProvider>
                         <KrogerProvider>
-                          <Route exact path="/location/:locationId(\d+)" render={(props) => <Location {...props} />} />
+                          <Route exact path="/location/:locationId(\d+)/edit" render={(props) => <Location {...props} />} />
+                          <Route exact path="/location/add" render={(props) => <Location {...props} />} />
                           <Route exact path="/product/add" render={(props) => <AddProduct {...props} />} />
                         </KrogerProvider>
                         <Route exact path="/basket/:userId(\d+)" render={(props) => <Basket {...props} />} />
