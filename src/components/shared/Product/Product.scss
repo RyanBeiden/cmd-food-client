@@ -1,0 +1,48 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.product {
+  background-color: #ffffff;
+  border: 1px solid $primaryColor;
+  margin: 1.5rem;
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding: .5rem;
+  }
+
+  img {
+    width: 5.5rem;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
+    padding: .5rem .5rem .5rem 0rem;
+  }
+
+  .name {
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 1;
+    padding: .5rem 0rem .5rem .5rem;
+    margin-bottom: 0;
+    font-family: $secondaryFont;
+    font-weight: 400;
+    color: $primaryColor;
+  }
+
+  .price {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    padding: .6rem;
+    margin-bottom: 0;
+    font-family: $secondaryFont;
+    font-weight: 400;
+    color: $primaryColor;
+  }
+
+  button {
+    @include button;
+    grid-column: 3 / span 1;
+    grid-row: 2 / span 1;
+    margin-bottom: .3rem;
+  }
+}

@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ProductListContext } from '../../../helpers/data/ProductListProvider';
+import Product from '../../shared/Product/Product';
 import './Basket.scss';
 
 function Basket(props) {
@@ -21,12 +23,11 @@ function Basket(props) {
 
   useEffect(() => {
     getProfile();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className='basket'>
-      <h5>Basket Total: <span className='money'>$10</span></h5>
+      {/* <h5>Basket Total: <span className='money'>TOTAL HERE</span></h5> */}
       <div className='button-container'>
         {currentStore !== null
           ? <>
@@ -37,8 +38,12 @@ function Basket(props) {
         }
       </div>
       {productList
-        ? productList.map((singleProduct) => <p key={`product-${singleProduct.id}`}>{singleProduct.product.name}</p>)
-        : ''
+        ? productList.map((singleProduct) => <Product
+            key={`product-${singleProduct.product.id}`}
+            listItem={singleProduct}
+            basket={true}
+          />)
+        : <p className='no-products'>No products in your cart</p>
       }
     </div>
   );
