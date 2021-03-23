@@ -1,14 +1,33 @@
-import React, { useContext } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect, useState } from 'react';
 import { ProductListContext } from '../../../helpers/data/ProductListProvider';
+import { ProductContext } from '../../../helpers/data/ProductProvider';
 import './Product.scss';
 
 function Product(props) {
-  const { listItem, krogerProduct } = props;
-  const { deleteProductList, updateProductList } = useContext(ProductListContext);
+  const {
+    listItem,
+    krogerProduct,
+    location,
+  } = props;
+  const [krogerImage, setKrogerImage] = useState('');
+  const [addedToList, setAddedToList] = useState(false);
+  const { deleteProductList, updateProductList, addProductList } = useContext(ProductListContext);
+  const { addProduct } = useContext(ProductContext);
 
-  // Re-evaluate these variables and put in a useEffect:
-  // const krogerUrl = krogerProduct.images[0].sizes[1].url;
-  // const krogerPrice = krogerProduct.items[0].price.regular;
+  useEffect(() => {
+    if (props.kroger) {
+      krogerProduct.images.forEach((image) => {
+        if (image.perspective === 'front') {
+          image.sizes.forEach((singleSize) => {
+            if (singleSize.size === 'small') {
+              setKrogerImage(singleSize.url);
+            }
+          });
+        }
+      });
+    }
+  }, []);
 
   const deleteListItem = () => {
     const newListItem = { ...listItem };
@@ -16,6 +35,28 @@ function Product(props) {
     updateProductList(listItem.id, newListItem)
       .then(() => deleteProductList(listItem.id))
       .then(() => window.location.reload());
+  };
+
+  const createProduct = (e) => {
+    e.preventDefault();
+    const newListItem = {
+      kroger_id: krogerProduct.productId,
+      name: krogerProduct.description,
+      price: krogerProduct.items[0].price.regular,
+      image_url: krogerImage,
+      aisle: krogerProduct.aisleLocations[0].description,
+    };
+
+    addProduct(newListItem)
+      .then((response) => {
+        const productListObj = {
+          product: response.id,
+          location: location.id,
+          completed: false,
+        };
+        addProductList(productListObj)
+          .then(() => setAddedToList(true));
+      });
   };
 
   return (
@@ -31,7 +72,7 @@ function Product(props) {
         }
         {props.kroger
           ? <>
-              <img src={krogerProduct.images[0].sizes[1].url} alt='Kroger' />
+              <img src={krogerImage} alt='Kroger' />
                 <p className='name'>{krogerProduct.description}</p>
                 <p className='price'>${krogerProduct.items[0].price.regular}</p>
             </>
@@ -42,7 +83,11 @@ function Product(props) {
           : ''
         }
         {props.kroger
-          ? <button>Add</button>
+          ? <button
+              onClick={addedToList ? ((e) => e.preventDefault()) : createProduct}
+              className={addedToList ? 'no-click' : ''}>
+                {addedToList ? 'Added' : 'Add'}
+            </button>
           : ''
         }
       </div>

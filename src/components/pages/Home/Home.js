@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import PersonIcon from '@material-ui/icons/Person';
@@ -7,8 +8,10 @@ import './Home.scss';
 
 function Home(props) {
   const [profileId, setProfileId] = useState(0);
+  const [loader, setLoader] = useState(false);
 
   const getProfile = () => new Promise((resolve, reject) => {
+    setLoader(true);
     fetch('https://cmd-food.herokuapp.com/profiles', {
       method: 'GET',
       headers: {
@@ -21,11 +24,16 @@ function Home(props) {
 
   useEffect(() => {
     getProfile()
-      .then((res) => setProfileId(res[0].id));
+      .then((res) => setProfileId(res[0].id))
+      .then(() => setLoader(false));
   }, []);
 
   return (
     <div className='home'>
+      {loader
+        ? <ProgressBar className='progress-top' animated variant='secondary' now={100} />
+        : ''
+      }
       {profileId !== 0
         ? <>
             <div className='button-container'>

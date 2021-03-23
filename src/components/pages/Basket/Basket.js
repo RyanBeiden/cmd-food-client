@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import { ProductListContext } from '../../../helpers/data/ProductListProvider';
 import Product from '../../shared/Product/Product';
 import './Basket.scss';
@@ -8,6 +9,7 @@ import './Basket.scss';
 function Basket(props) {
   const [currentStore, setCurrentStore] = useState({});
   const { getProductsByUser, productList } = useContext(ProductListContext);
+  const [loader, setLoader] = useState(false);
 
   const getProfile = async () => {
     const response = await fetch('https://cmd-food.herokuapp.com/profiles', {
@@ -17,11 +19,13 @@ function Basket(props) {
       },
     });
     const value = await response.json();
-    setCurrentStore(value[0].current_store);
-    getProductsByUser(value[0].id);
+    setCurrentStore(value[0].current_store.id);
+    getProductsByUser(value[0].id)
+      .then(() => setLoader(false));
   };
 
   useEffect(() => {
+    setLoader(true);
     getProfile();
   }, []);
 
@@ -37,6 +41,10 @@ function Basket(props) {
           : <Link to='/location/add'><button>Add Location</button></Link>
         }
       </div>
+      {loader
+        ? <ProgressBar className='progress-top' animated variant='secondary' now={100} />
+        : ''
+      }
       {productList
         ? productList.map((singleProduct) => <Product
             key={`product-${singleProduct.product.id}`}

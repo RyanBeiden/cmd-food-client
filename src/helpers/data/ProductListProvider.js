@@ -5,6 +5,19 @@ export const ProductListContext = React.createContext();
 function ProductListProvider(props) {
   const [productList, setProductList] = useState([]);
 
+  const addProductList = (newProductList) => new Promise((resolve, reject) => {
+    fetch('https://cmd-food.herokuapp.com/productlists', {
+      method: 'POST',
+      headers: {
+        Authorization: `Token ${localStorage.getItem('cf_token')}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newProductList),
+    })
+      .then((response) => resolve(response.json()))
+      .catch((err) => reject(err));
+  });
+
   const getProductsByUser = async (userId) => new Promise((resolve, reject) => {
     fetch(`https://cmd-food.herokuapp.com/productlists?user_id=${userId}`, {
       method: 'GET',
@@ -48,6 +61,7 @@ function ProductListProvider(props) {
       productList,
       deleteProductList,
       updateProductList,
+      addProductList,
     }}>
       { props.children }
     </ProductListContext.Provider>

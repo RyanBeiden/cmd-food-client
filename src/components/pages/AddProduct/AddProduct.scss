@@ -1,0 +1,51 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.add-product {
+  h3 {
+    font-family: $primaryFont;
+    color: $primaryColor;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: .9rem;
+  }
+
+  .separator {
+    margin: 1rem 4rem 2rem 4rem;
+    background-color: $primaryColor;
+  }
+
+  .progress-top {
+    margin: .5rem 2rem;
+  }
+
+  .progress-bottom {
+    margin: -1.5rem 2rem .5rem 2rem;
+  }
+
+  Form {
+    display: flex;
+    justify-content: center;
+  }
+
+  Input {
+    font-family: $secondaryFont;
+    color: $primaryColor !important;
+    font-size: .9rem !important;
+  }
+
+  button {
+    @include button;
+    margin-left: .5rem;
+  }
+
+  .prev-next {
+    margin-bottom: 2.5rem;
+    display: flex;
+    justify-content: center;
+
+    #prev {
+      margin-left: 0;
+    }
+  }
+}

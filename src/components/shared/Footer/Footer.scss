@@ -1,9 +1,10 @@
 @import '../../../styles/variables';
 
 footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  min-width: 100%;
+  width: 100%;
+  height: 2.5rem;
 
   .footer-background {
     transform: scaleY(-1);
@@ -11,13 +12,13 @@ footer {
 
   .footer-text {
     position: absolute;
-    bottom: 0;
+    bottom: -200%;
     right: 0;
     z-index: 1;
     text-align: right;
     font-family: $primaryFont;
     color: $secondaryColor;
-    margin: 0rem 1.2rem 1rem 0rem;
+    margin: -5rem 1.2rem 1rem 0rem;
   }
 
   .github {

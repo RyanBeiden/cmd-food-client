@@ -19,9 +19,9 @@ function KrogerProvider(props) {
       .catch((err) => console.error('Something went wrong', err));
   };
 
-  const searchProduct = (locationId, term) => new Promise((resolve, reject) => {
+  const searchProduct = (searchData) => new Promise((resolve, reject) => {
     getToken();
-    fetch(`https://api.kroger.com/v1/products?filter.term=${term}&filter.locationId=${locationId}&filter.limit=5`, {
+    fetch(`https://api.kroger.com/v1/products?filter.term=${searchData.term}&filter.locationId=${searchData.locationId}&filter.start=${searchData.start}&filter.limit=5`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('kroger_token')}`,
@@ -30,7 +30,7 @@ function KrogerProvider(props) {
     })
       .then((resp) => resp.json())
       .then((data) => resolve((data)))
-      .catch((err) => console.error('Something went wrong', err));
+      .catch((err) => reject(err));
   });
 
   return (
