@@ -13,7 +13,8 @@
   }
 
   img {
-    width: 5.5rem;
+    width: 6rem;
+    height: auto;
     grid-column: 1 / span 1;
     grid-row: 1 / span 2;
     padding: .5rem .5rem .5rem 0rem;
@@ -44,5 +45,10 @@
     grid-column: 3 / span 1;
     grid-row: 2 / span 1;
     margin-bottom: .3rem;
+  }
+
+  .no-click {
+    background-color: #c9c9c9;
+    border-color: #c9c9c9;
   }
 }
