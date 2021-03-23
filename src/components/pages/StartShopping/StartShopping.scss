@@ -1,0 +1,36 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.start-shopping {
+  display: grid;
+  justify-content: center;
+
+  h3 {
+    text-align: center;
+    font-size: 1.2rem;
+    color: $primaryColor;
+    font-family: $primaryFont;
+    margin: 3rem 0 2rem 0;
+  }
+
+  .side-selectors {
+    display: flex;
+    justify-content: center;
+
+    button {
+      @include button;
+      margin: 0rem .5rem 2em .5rem;
+    }
+
+    .selected {
+      background-color: $primaryColor;
+      color: $secondaryColor;
+    }
+  }
+
+  .play-icon {
+    justify-self: center;
+    color: $primaryColor;
+    font-size: 5rem;
+  }
+}
