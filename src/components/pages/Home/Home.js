@@ -4,15 +4,14 @@ import { Link } from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import PersonIcon from '@material-ui/icons/Person';
+// import PersonIcon from '@material-ui/icons/Person';
 import { ProductListContext } from '../../../helpers/data/ProductListProvider';
 import './Home.scss';
 
 function Home(props) {
   const [profileId, setProfileId] = useState(0);
-  const [aisleList, setAisleList] = useState([]);
   const [loader, setLoader] = useState(false);
-  const { getProductsByUser, productList } = useContext(ProductListContext);
+  const { getProductsByUser } = useContext(ProductListContext);
 
   const getProfile = () => new Promise((resolve, reject) => {
     setLoader(true);
@@ -32,24 +31,8 @@ function Home(props) {
         setProfileId(res[0].id);
         getProductsByUser(res[0].id);
       })
-      .then(() => setLoader(false))
-      .then(() => setAisleList(groupByAisle(productList)));
+      .then(() => setLoader(false));
   }, []);
-
-  const groupByAisle = (list) => {
-    const res = [];
-    const map = {};
-    list.forEach((item) => {
-      const temp = {};
-      if (!map[item.product.aisle]) {
-        map[item.product.aisle] = [];
-        temp[item.product.aisle] = map[item.product.aisle];
-        res.push(temp);
-      }
-      map[item.product.aisle].push({ product: item.product });
-    });
-    return res;
-  };
 
   return (
     <div className='home'>
@@ -69,11 +52,11 @@ function Home(props) {
                 <button className='nav-link'><PlayCircleOutlineIcon className='nav-start' />Start Shopping</button>
               </Link>
             </div>
-            <div className='button-container'>
+            {/* <div className='button-container'>
               <Link to={`/profile/${profileId}`}>
                 <button className='nav-link'><PersonIcon className='nav-profile' />Profile</button>
               </Link>
-            </div>
+            </div> */}
           </>
         : ''
     }

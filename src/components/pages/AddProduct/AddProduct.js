@@ -101,10 +101,10 @@ function AddProduct(props) {
             </div>
           : ''
         }
-        {loader
+        {/* {loader
           ? <ProgressBar className='progress-bottom' animated variant='secondary' now={100} />
           : ''
-        }
+        } */}
       </div>
     </div>
   );

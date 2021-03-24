@@ -1,14 +1,13 @@
-/* eslint-disable no-nested-ternary */
+/* eslint-disable no-plusplus */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from 'react';
-import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import Aisles from '../Aisles/Aisles';
 import { ProductListContext } from '../../../helpers/data/ProductListProvider';
 import './StartShopping.scss';
 
 function StartShopping(props) {
   const [aisleList, setAisleList] = useState(null);
-  const [leftSide, setLeftSide] = useState(false);
-  const [rightSide, setRightSide] = useState(false);
+  const [aisleIndex, setAisleIndex] = useState(0);
   const { getProductsByUser, productList } = useContext(ProductListContext);
 
   const getProfile = () => new Promise((resolve, reject) => {
@@ -25,56 +24,38 @@ function StartShopping(props) {
   useEffect(() => {
     getProfile()
       .then((res) => getProductsByUser(res[0].id))
-      .then(() => setAisleList(groupByAisle(productList)));
-  }, []);
+      .then(() => groupByAisle());
+  }, [aisleIndex]);
 
-  const groupByAisle = (list) => {
-    const res = [];
-    const map = {};
-    list.forEach((item) => {
-      const temp = {};
-      if (!map[item.product.aisle]) {
-        map[item.product.aisle] = [];
-        temp[item.product.aisle] = map[item.product.aisle];
-        res.push(temp);
-      }
-      map[item.product.aisle].push({ product: item.product });
-    });
-    return res;
-  };
+  const groupByAisle = async () => {
+    if (productList.length >= 1) {
+      const aisles = [];
+      const obj = {};
+      await productList.forEach((item) => {
+        const temp = {};
+        if (!obj[item.product.aisle]) {
+          obj[item.product.aisle] = [];
+          temp.products = obj[item.product.aisle];
+          temp.description = item.product.aisle;
+          aisles.push(temp);
+        }
+        obj[item.product.aisle].push(item.product);
+      });
 
-  const selectSideEvent = (e) => {
-    if (e.target.id === 'left') {
-      setRightSide(false);
-      setLeftSide(true);
-    } else if (e.target.id === 'right') {
-      setLeftSide(false);
-      setRightSide(true);
+      aisles.sort((a, b) => ((a.description > b.description) ? 1 : -1));
+      return setAisleList(aisles);
     }
+    return setAisleList.null;
   };
-
-  // IDK what's going on here below, but I gotta find a way to sort this array from Aisle 1 - Produce (i.e. Aisle 2, Aisle 4, Aisle 6, Produce, etc.)
-  // WIP BELOW / Don't sort by productId, but sort by array key!
-
-  const startShopping = (key) => console.warn(productList.sort((a, b) => {
-    const x = a[key]; const y = b[key];
-    console.warn(aisleList);
-    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-  }));
-
-  //
 
   return (
     <div className='start-shopping'>
-      <h3>Choose a side of the store to start</h3>
-      <div className='side-selectors'>
-        <button id='left' onClick={selectSideEvent} className={leftSide ? 'selected' : ''}>Left</button>
-        <button id='right' onClick={selectSideEvent} className={rightSide ? 'selected' : ''}>Right</button>
-      </div>
+      <p>Tap product when collected</p>
       {aisleList !== null
-        ? <PlayCircleOutlineIcon className='play-icon' onClick={startShopping} />
+        ? <Aisles aisleList={aisleList[aisleIndex]}/>
         : ''
       }
+      <button onClick={() => setAisleIndex(aisleIndex + 1)}>Next</button>
     </div>
   );
 }

@@ -52,7 +52,7 @@ function App() {
                           </KrogerProvider>
                           <Route exact path="/basket/:userId(\d+)" render={(props) => <Basket {...props} />} />
                           <Route exact path="/start" render={(props) => <StartShopping {...props} />} />
-                          <Route exact path="/aisles/:aisleNum(\d+)" render={(props) => <Aisles {...props} />} />
+                          <Route exact path="/aisles/:aisle" render={(props) => <Aisles {...props} />} />
                         </ProductListProvider>
                       </ProfileProvider>
                     </LocationProvider>

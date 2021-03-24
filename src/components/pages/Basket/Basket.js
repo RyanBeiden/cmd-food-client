@@ -36,7 +36,7 @@ function Basket(props) {
         {currentStore !== null
           ? <>
               <Link to='/product/add'><button>Add Product</button></Link>
-              <Link to={`/location/${currentStore}/edit`}><button>Edit Location</button></Link>
+              {/* <Link to={`/location/${currentStore}/edit`}><button>Edit Location</button></Link> */}
             </>
           : <Link to='/location/add'><button>Add Location</button></Link>
         }
