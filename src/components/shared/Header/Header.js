@@ -47,7 +47,7 @@ function Header(props) {
                 alt="Profile"
               />
             }>
-            <Link to={`/profile/${user.id}`} className='nav-link'>Profile</Link>
+            {/* <Link to={`/profile/${user.id}`} className='nav-link'>Profile</Link> */}
             <Link to={`/basket/${user.id}`} className='nav-link'>Basket</Link>
             <Link to='/start' className='nav-link'>Start Shopping</Link>
           </DropdownButton>

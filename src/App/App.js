@@ -38,23 +38,23 @@ function App() {
             if (localStorage.getItem('cf_token')) {
               return (
                 <React.Fragment>
-                  <Route exact path="/" render={(props) => <Home {...props} />} />
                   <ProductProvider>
                     <LocationProvider>
                       <ProfileProvider>
+                        <ProductListProvider>
+                        <Route exact path="/" render={(props) => <Home {...props} />} />
                         <Route exact path="/profile/:userId(\d+)" render={(props) => <Profile {...props} />} />
                         <Route exact path="/profile/:userId(\d+)/edit" render={(props) => <EditProfile {...props} />} />
+                          <KrogerProvider>
+                            <Route exact path="/location/:locationId(\d+)/edit" render={(props) => <Location {...props} />} />
+                            <Route exact path="/location/add" render={(props) => <Location {...props} />} />
+                            <Route exact path="/product/add" render={(props) => <AddProduct {...props} />} />
+                          </KrogerProvider>
+                          <Route exact path="/basket/:userId(\d+)" render={(props) => <Basket {...props} />} />
+                          <Route exact path="/start" render={(props) => <StartShopping {...props} />} />
+                          <Route exact path="/aisles/:aisle" render={(props) => <Aisles {...props} />} />
+                        </ProductListProvider>
                       </ProfileProvider>
-                      <ProductListProvider>
-                        <KrogerProvider>
-                          <Route exact path="/location/:locationId(\d+)/edit" render={(props) => <Location {...props} />} />
-                          <Route exact path="/location/add" render={(props) => <Location {...props} />} />
-                          <Route exact path="/product/add" render={(props) => <AddProduct {...props} />} />
-                        </KrogerProvider>
-                        <Route exact path="/basket/:userId(\d+)" render={(props) => <Basket {...props} />} />
-                        <Route exact path="/start" render={(props) => <StartShopping {...props} />} />
-                        <Route exact path="/aisles/:aisleNum(\d+)" render={(props) => <Aisles {...props} />} />
-                      </ProductListProvider>
                     </LocationProvider>
                   </ProductProvider>
                 </React.Fragment>

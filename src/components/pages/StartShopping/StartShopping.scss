@@ -1,0 +1,49 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.start-shopping {
+  display: grid;
+  justify-content: center;
+
+  p {
+    font-family: $primaryFont;
+    text-align: center;
+    margin: 1rem 0 0 0;
+    color: $primaryColor;
+  }
+
+  h3 {
+    text-align: center;
+    font-size: 1.6rem;
+    color: $primaryColor;
+    font-family: $secondaryFont;
+    margin: 1rem 0;
+    text-decoration: underline;
+  }
+
+  .side-selectors {
+    display: flex;
+    justify-content: center;
+
+    button {
+      @include button;
+      margin: 0rem .5rem 2em .5rem;
+    }
+
+    .selected {
+      background-color: $primaryColor;
+      color: $secondaryColor;
+    }
+  }
+
+  .play-icon {
+    justify-self: center;
+    color: $primaryColor;
+    font-size: 5rem;
+  }
+
+  button {
+    @include button;
+    margin: 1.5rem 4rem;
+  }
+}
